@@ -5,20 +5,18 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 
 @DataJpaTest
-class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository,
-                           @Autowired val entityManager: TestEntityManager)
+class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository)
 {
 
     @Test
-    fun 멤버저장() {
-        var junyoung = Member(
+    fun memberTest() {
+        val junyoung = Member(
                 name = "이준영",
                 age = 34)
 
-        var hyangju = Member(
+        val hyangju = Member(
                 name = "박향주",
                 age = 34)
 
@@ -29,8 +27,8 @@ class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository,
         memberRepository.save(hyangju)
 
         println("저장 개수 = ${memberRepository.findAll().size}")
-        var findJY: Member? = memberRepository.findByName("이준영")
-        var findHJ: Member? = memberRepository.findByName("박향주")
+        val findJY: Member? = memberRepository.findByName("이준영")
+        val findHJ: Member? = memberRepository.findByName("박향주")
 
         println("memberRepository.findByName(\"이준영\") = $findJY")
         println("memberRepository.findByName(\"박향주\") = $findHJ")
