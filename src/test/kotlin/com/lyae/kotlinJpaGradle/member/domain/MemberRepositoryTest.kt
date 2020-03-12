@@ -40,5 +40,6 @@ class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository,
 
         assertEquals("박향주", findHJ?.name)
         assertEquals(34, findHJ?.age)
+        assertEquals("테스트", findHJ?.coment)
     }
 }
