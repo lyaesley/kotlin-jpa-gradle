@@ -21,10 +21,12 @@ class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository)
                 age = 34)
 
         println("향주1 $hyangju")
-        hyangju.coment = "테스트"
+        hyangju.coment = "코멘트"
         println("향주2 $hyangju")
         memberRepository.save(junyoung)
         memberRepository.save(hyangju)
+
+        hyangju.coment = "save후변경"
 
         println("저장 개수 = ${memberRepository.findAll().size}")
         val findJY: Member? = memberRepository.findByName("이준영")
@@ -38,6 +40,16 @@ class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository)
 
         assertEquals("박향주", findHJ?.name)
         assertEquals(34, findHJ?.age)
-        assertEquals("테스트", findHJ?.coment)
+        assertEquals("save후변경", findHJ?.coment)
+        assertNotEquals("코멘트", findHJ?.coment)
+
+        assertEquals(junyoung, findJY)
+
+        val findList = memberRepository.findAllByAge(34)
+        println("findList.size = ${findList.size}")
+        findList.forEach { member -> println("member 출력 $member") }
+        assertEquals(junyoung, findList.firstOrNull { member-> member.name=="이준영" })
+        assertEquals(hyangju, findList.firstOrNull { member-> member.name=="박향주" })
+
     }
 }
