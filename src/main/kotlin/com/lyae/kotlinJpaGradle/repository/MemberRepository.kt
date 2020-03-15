@@ -1,6 +1,6 @@
-package com.lyae.kotlinJpaGradle.member.repository
+package com.lyae.kotlinJpaGradle.repository
 
-import com.lyae.kotlinJpaGradle.member.domain.Member
+import com.lyae.kotlinJpaGradle.domain.Member
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface MemberRepository: JpaRepository<Member, Long> {
