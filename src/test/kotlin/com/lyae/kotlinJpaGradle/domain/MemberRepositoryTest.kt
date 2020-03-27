@@ -41,20 +41,20 @@ class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository,
 
     @Test
     fun memberTest() {
-        var junyoung = Member(
+        val junyoung = Member(
                 name = "이준영",
                 age = 34)
 
-        var hyangju = Member(
+        val hyangju = Member(
                 name = "박향주",
                 age = 34)
 
-        var nacho = Member(
+        val nacho = Member(
                 name = "나쵸",
                 age = 20)
 
-        var team1 = Team(name = "Team1")
-        var team2 = Team(name = "Team2")
+        val team1 = Team(name = "Team1")
+        val team2 = Team(name = "Team2")
 
 //        teamRepository.save(team1)
 //        teamRepository.save(team2)
@@ -96,7 +96,7 @@ class MemberRepositoryTest(@Autowired val memberRepository: MemberRepository,
 
         assertEquals(junyoung, findJY)
 
-        val findList = memberRepository.findAllByAge(34)
+        val findList = memberRepository.findByAge(34)
         println("findList.size = ${findList.size}")
         findList.forEach { member -> println("member 출력 $member") }
         assertEquals(junyoung, findList.firstOrNull { member-> member.name=="이준영" })
