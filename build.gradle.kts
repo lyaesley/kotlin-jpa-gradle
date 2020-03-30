@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -27,6 +29,16 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+
+    // jsp viewresolver 설정시 아래 lib 필요
+    implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
+    implementation("javax.servlet:jstl")
+
+    // devtools LiveReload 가능하게 해줌
+    runtimeOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("org.apache.commons:commons-text:1.8")
+
+
 }
 
 tasks.withType<Test> {
